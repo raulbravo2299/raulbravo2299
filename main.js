@@ -1,4 +1,5 @@
 
+// Lotto generation logic
 document.getElementById('generate').addEventListener('click', () => {
     const numbersContainer = document.getElementById('numbers');
     numbersContainer.innerHTML = '';
@@ -31,3 +32,28 @@ function getNumberColor(number) {
     if (number <= 40) return '#2196f3'; // Blue
     return '#9c27b0'; // Purple
 }
+
+// Theme toggle logic
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+    body.classList.add('dark-theme');
+    themeToggle.textContent = '🌙';
+}
+
+themeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    
+    let theme = 'light';
+    if (body.classList.contains('dark-theme')) {
+        theme = 'dark';
+        themeToggle.textContent = '🌙';
+    } else {
+        themeToggle.textContent = '☀️';
+    }
+    
+    localStorage.setItem('theme', theme);
+});
